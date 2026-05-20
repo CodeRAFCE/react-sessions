@@ -1,0 +1,39 @@
+{
+  "name": "react-session",
+  "version": "1.0.0",
+  "description": "Learning React inDepth",
+  "keywords": [
+    "react",
+    "learning",
+    "react",   
+    "to",
+    "be",
+    "better"
+  ],
+  "homepage": "https://github.com/CODERafce/react-sessions#readme",
+  "bugs": {
+    "url": "https://github.com/CODERafce/react-sessions/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CODERafce/react-sessions.git"
+  },
+  "license": "ISC",
+  "author": "Seshan A",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "browsersList": [
+    "last 2 version"
+  ]
+}

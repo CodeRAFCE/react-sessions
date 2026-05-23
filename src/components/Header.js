@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { LOGO_URL } from "../utils/constants";
+import { NavLink } from "react-router";
 
 export const Header = () => {
 
@@ -16,9 +17,9 @@ export const Header = () => {
       <img className="logo" src={LOGO_URL} alt="FoodApp logo" />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Cart</li>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/about">About Us</NavLink></li>
+          <li><NavLink to="/cart">Cart</NavLink></li>
         </ul>
       </div>
     </div>

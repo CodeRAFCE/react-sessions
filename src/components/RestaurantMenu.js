@@ -2,6 +2,7 @@ import { CDN_URL } from "../utils/constants";
 import { getRestaurantById } from "../services/restaurants.service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import {useRestaurantMenu} from "../hooks/useRestaurantMenu";
 
 const MenuShimmer = () => (
   <div className="menu-page">
@@ -94,27 +95,8 @@ const MenuItem = ({ item }) => {
 };
 
 const RestaurantMenu = () => {
-  const [restaurant, setRestaurant] = useState(null);
-  const [menuCategory, setMenuCategory] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { resId } = useParams();
-
-  useEffect(() => {
-    const fetchRestaurant = async () => {
-      try {
-        const { restaurantInfo, menuCategories } =
-          await getRestaurantById(resId);
-        setRestaurant(restaurantInfo);
-        setMenuCategory(menuCategories);
-      } catch (error) {
-        console.log("Error fetching restaurant data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRestaurant();
-  }, []);
+  const { restaurant, menuCategory, loading } = useRestaurantMenu(resId);
 
   if (loading) {
     return <MenuShimmer />;

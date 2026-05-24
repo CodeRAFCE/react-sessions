@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {getUser} from "../services/users.services"
+
 
 class ClassComponent extends Component {
 
@@ -7,12 +9,19 @@ class ClassComponent extends Component {
     console.log("Constructor called", props);
 
     this.state = {
-        count: 0
+        userInfo: null,
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log("Component did mount");
+    const user = await getUser()
+    this.setState({userInfo: user})
+    console.log(user)
+
+    // this.timer = setInterval(() => {
+    //     console.log("Interval called")
+    // }, 1000)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -21,22 +30,20 @@ class ClassComponent extends Component {
 
   componentWillUnmount() {
     console.log("Component will unmount");
+    // clearInterval(this.timer);
   }
 
 
   render() {
     console.log("Render", this);
     const { name, age, occupation } = this.props.user;
-    let { count } = this.state;
-
+    let { userInfo } = this.state;
 
     return (
       <div className="user-card">
-        <h1>Count: {count}</h1>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>Increment Count</button>
-        <h2>Name: {name} Class</h2>
-        <h3>Age: {age}</h3>
-        <p>Occupation: {occupation}</p>
+        <h2>Name: {userInfo?.name} Class</h2>
+        <h3>Company: {userInfo?.company}</h3>
+        <p>Location: {userInfo?.location}</p>
       </div>
     );
   }

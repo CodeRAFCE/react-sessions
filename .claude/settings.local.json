@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:namastedev.com)"
+      "WebFetch(domain:namastedev.com)",
+      "Bash(npm install *)",
+      "Bash(npm ls *)"
     ]
   }
 }

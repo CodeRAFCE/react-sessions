@@ -1,5 +1,4 @@
 
-
 class Child2 extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,11 @@ class Child extends React.Component {
   }
   // Called Fourth, after the child component is rendered and mounted, the parent component's componentDidMount method will be called.
   render() {
-    return <div><Child2 /></div>;
+    return (
+      <div>
+        <Child2 />
+      </div>
+    );
   }
 }
 
@@ -41,7 +44,14 @@ class Parent extends React.Component {
   }
   //Called second
   render() {
-    return <Child />; // The child component is rendered inside the parent component, so the child's lifecycle methods will be called before the parent's lifecycle methods.
+    return (
+      <>
+        <Child />
+        <Child /> // The child component is rendered inside the parent
+        component, so the child's lifecycle methods will be called before the
+        parent's lifecycle methods.
+      </>
+    );
   }
 }
 
@@ -50,7 +60,10 @@ class Parent extends React.Component {
 // Parent render
 // Child constructor
 // Child render
+// Child2 constructor
+// Child2 render
+// Child2 mounted
 // Child mounted
 // Parent mounted
 
-export default Parent
+export default Parent;

@@ -100,9 +100,8 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   useEffect(() => {
-    
-      const fetchRestaurant = async () => {
-        try {
+    const fetchRestaurant = async () => {
+      try {
         const { restaurantInfo, menuCategories } =
           await getRestaurantById(resId);
         setRestaurant(restaurantInfo);

@@ -399,6 +399,44 @@ body {
   font-size: 15px;
 }
 
+/* ── User Card ────────────────────────────────────────── */
+.user-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  max-width: 360px;
+  margin: 40px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-top: 5px solid #ff6b35;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.user-card h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.user-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff6b35;
+  margin-bottom: 10px;
+}
+
+.user-card p {
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 0.3px;
+}
+
 /* ── Restaurant Card Link ─────────────────────────────── */
 .res-card-link {
   text-decoration: none;

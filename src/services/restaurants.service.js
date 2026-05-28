@@ -17,19 +17,17 @@ export const getRestaurantById = async (id) => {
   const restaurantInfo = items[2]?.card?.card?.info ?? null;
   const menuCards = items[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards ?? null;
 
-  const menuCategories = menuCards?.reduce((accumulator, current) => {
+  const menuCategories =
+    menuCards?.reduce((accumulator, current) => {
+      if (current?.card?.card?.itemCards) {
+        accumulator.push({
+          title: current?.card?.card?.title,
+          items: current?.card?.card?.itemCards?.map((f) => f?.card?.info),
+        });
+      }
 
-    if(current?.card?.card?.itemCards) {
-      accumulator.push({
-        title: current?.card?.card?.title,
-        items: current?.card?.card?.itemCards?.map((f) => f?.card?.info)
-      })
-    }
-
-    return accumulator;
-
-  }, []) ?? [];
+      return accumulator;
+    }, []) ?? [];
 
   return { restaurantInfo, menuCategories };
 };
-

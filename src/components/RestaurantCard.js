@@ -9,7 +9,6 @@ const RestaurantCard = ({
   areaName,
   costForTwo,
   aggregatedDiscountInfoV3,
-  veg,
 }) => (
   <div className="res-card">
     <div className="res-card-img-wrapper">
@@ -21,7 +20,9 @@ const RestaurantCard = ({
       {aggregatedDiscountInfoV3 && (
         <div className="res-card-discount">
           <span>{aggregatedDiscountInfoV3.header}</span>
-          <span className="discount-sub">{aggregatedDiscountInfoV3.subHeader}</span>
+          <span className="discount-sub">
+            {aggregatedDiscountInfoV3.subHeader} hi
+          </span>
         </div>
       )}
     </div>
@@ -37,5 +38,17 @@ const RestaurantCard = ({
     </div>
   </div>
 );
+
+// Higher Order Component
+// input - RestaurantCard => returns - RestaurantCardWithVegBadge
+
+export const withVegBadge = (RestaurantCard) => (props) => {
+  return (
+    <div className="res-card-veg">
+      <span className="veg-badge">🟢 Pure Veg</span>
+      <RestaurantCard {...props} />
+    </div>
+  );
+};
 
 export default RestaurantCard;

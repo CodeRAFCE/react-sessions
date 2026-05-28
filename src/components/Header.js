@@ -1,26 +1,41 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { LOGO_URL } from "../utils/constants";
 import { NavLink } from "react-router";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import UserContext from "../utils/context/UserContext";
 
 export const Header = () => {
+  const [btnText, setBtnText] = useState("Login");
+  const onlineStatus = useOnlineStatus();
+  const data = useContext(UserContext);
 
-  console.log("Statement 1: Before useEffect");
-  useEffect(() => {
-    console.log("Header component mounted");
-  });
-
-  console.log("Statement 2: After useEffect");
+  const handleLoginClick = () => {
+    setBtnText((prev) => (prev === "Login" ? "Logout" : "Login"));
+  };
 
   return (
     <div className="header">
       <img className="logo" src={LOGO_URL} alt="FoodApp logo" />
       <div className="nav-items">
         <ul>
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/about">About Us</NavLink></li>
-          <li><NavLink to="/cart">Cart</NavLink></li>
+          <li>Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About Us</NavLink>
+          </li>
+          <li>
+            <NavLink to="/cart">Cart</NavLink>
+          </li>
         </ul>
+      </div>
+      <div>
+        <button className="login-btn" onClick={handleLoginClick}>
+          {btnText}
+        </button>
+        <span className="logged-in-user">{data.loggedInUser}</span>
       </div>
     </div>
   );

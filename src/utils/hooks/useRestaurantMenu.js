@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRestaurantById } from "../services/restaurants.service";
+import { getRestaurantById } from "../../services/restaurants.service";
 
 export const useRestaurantMenu = (resId) => {
   const [restaurant, setRestaurant] = useState(null);

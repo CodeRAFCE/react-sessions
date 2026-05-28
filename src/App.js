@@ -1,39 +1,48 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-
-import About from "./pages/About";
-
 import Header from "./components/Header";
-import Body from "./components/Body";
-import Playgounrd from "./components/Playground";
-import ErrorPage from "./components/ErrorPage";
+import UserContext from "./utils/context/UserContext";
+
+const Body = lazy(() => import("./components/Body"));
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
+const NotFound = lazy(() => import("./components/NotFound"));
+const ErrorPage = lazy(() => import("./components/ErrorPage"));
+const About = lazy(() => import("./pages/About"));
+const Cart = lazy(() => import("./pages/Cart"));
 
 const AppLayout = () => (
-  <div className="app">
-    {/* <Playgounrd /> */}
-    <Header />
-    <Outlet />
-  </div>
+  <UserContext.Provider value={{ loggedInUser: "coderafce" }}>
+    <div className="app">
+      {/* <Playgounrd /> */}
+      <UserContext.Provider value={{ loggedInUser: "Hello" }}>
+        <Header />
+      </UserContext.Provider>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Outlet />
+      </Suspense>
+    </div>
+  </UserContext.Provider>
 );
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     Component: AppLayout,
-    ErrorBoundary: lazy(() => import("./components/ErrorPage")),
+    ErrorBoundary: ErrorPage,
     children: [
       {
         path: "/",
-        Component: lazy(() => import("./components/Body")),
+        Component: Body,
         children: [],
       },
-      { path: "/about", Component: lazy(() => import("./pages/About")) },
+      { path: "/about", Component: About },
+      { path: "/cart", Component: Cart },
 
-      {path: "/restaurant/:resId",    Component: lazy(() => import("./components/RestaurantMenu"))},
+      { path: "/restaurant/:resId", Component: RestaurantMenu },
     ],
   },
-  { path: "*", Component: lazy(() => import("./components/NotFound")) },
+  { path: "*", Component: NotFound },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

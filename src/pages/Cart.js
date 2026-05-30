@@ -1,33 +1,8 @@
-const cartItems = [
-  {
-    id: 1,
-    name: "Paneer Butter Masala",
-    price: 320,
-    quantity: 2,
-    isVeg: true,
-    imageId: "rng/md/ads/prod/v2_ratndeep-veg-biryani-kolkata.png",
-  },
-  {
-    id: 2,
-    name: "Chicken Biryani",
-    price: 280,
-    quantity: 1,
-    isVeg: false,
-    imageId: "rng/md/ads/prod/v2_ratndeep-veg-biryani-kolkata.png",
-  },
-  {
-    id: 3,
-    name: "Garlic Naan",
-    price: 60,
-    quantity: 3,
-    isVeg: true,
-    imageId: null,
-  },
-];
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem, updateQuantity } from "../utils/redux/slices/cartSlice";
 
-const isEmpty = true; // toggle to true to see empty state
-
-const CartItem = ({ item }) => (
+const CartItem = ({ item, onUpdateQuantity, onRemoveItem }) => (
   <div className="cart-item">
     <div className="cart-item-info">
       <span className={item.isVeg ? "veg-dot" : "nonveg-dot"} />
@@ -39,12 +14,24 @@ const CartItem = ({ item }) => (
 
     <div className="cart-item-right">
       <div className="cart-qty-control">
-        <button className="qty-btn">−</button>
+        <button
+          className="qty-btn"
+          onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+        >
+          −
+        </button>
         <span className="qty-value">{item.quantity}</span>
-        <button className="qty-btn">+</button>
+        <button
+          className="qty-btn"
+          onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+        >
+          +
+        </button>
       </div>
       <p className="cart-item-total">₹{item.price * item.quantity}</p>
-      <button className="cart-remove-btn">Remove</button>
+      <button className="cart-remove-btn" onClick={() => onRemoveItem(item.id)}>
+        Remove
+      </button>
     </div>
   </div>
 );
@@ -63,6 +50,10 @@ const EmptyCart = () => (
 );
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const isEmpty = useSelector((state) => state.cart.items.length === 0);
+  const dispatch = useDispatch();
+
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
@@ -70,6 +61,14 @@ const Cart = () => {
   const deliveryFee = 49;
   const taxes = Math.round(subtotal * 0.05);
   const total = subtotal + deliveryFee + taxes;
+
+  const handleUpdateQuantity = (id, quantity) => {
+    dispatch(updateQuantity({ id: id, quantity }));
+  };
+
+  const handleRemoveItem = (id) => {
+    dispatch(removeItem({ id: id }));
+  };
 
   return (
     <div className="cart-page">
@@ -82,7 +81,12 @@ const Cart = () => {
           <div className="cart-items-section">
             <p className="cart-restaurant-name">Spice Garden</p>
             {cartItems.map((item) => (
-              <CartItem key={item.id} item={item} />
+              <CartItem
+                key={item.id}
+                item={item}
+                onUpdateQuantity={handleUpdateQuantity}
+                onRemoveItem={handleRemoveItem}
+              />
             ))}
           </div>
 

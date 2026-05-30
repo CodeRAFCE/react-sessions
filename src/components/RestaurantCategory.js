@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import MenuItem from "./MenuItem";
 
 const RestaurantCategory = ({ category, showItems, setShowItems }) => {
-  const handleToggleMenuItems = () => {
+  const handleToggleMenuItems = (e) => {
     setShowItems();
+    e.stopPropagation();
   };
 
   return (

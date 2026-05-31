@@ -32,6 +32,9 @@ export const Header = () => {
             <NavLink to="/about">About Us</NavLink>
           </li>
           <li>
+            <NavLink to="/contact">Contact Us</NavLink>
+          </li>
+          <li>
             <NavLink to="/cart">Cart ({cartItems.length})</NavLink>
           </li>
         </ul>

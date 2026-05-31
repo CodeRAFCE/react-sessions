@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:namastedev.com)",
       "Bash(npm install *)",
-      "Bash(npm ls *)"
+      "Bash(npm ls *)",
+      "Bash(Select-String \"parcel\")",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\codet\\\\OneDrive\\\\Desktop\\\\Training\\\\react-session\\\\node_modules\" | Where-Object { $_.Name -match \"parcel\" } | Select-Object Name)"
     ]
   }
 }

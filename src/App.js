@@ -12,9 +12,10 @@ const NotFound = lazy(() => import("./components/NotFound"));
 const ErrorPage = lazy(() => import("./components/ErrorPage"));
 const About = lazy(() => import("./pages/About"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Contact = lazy(() => import("./components/Contact"));
 
 const AppLayout = () => (
-  <Provider store={appStore}> 
+  <Provider store={appStore}>
     <UserContext.Provider value={{ loggedInUser: "coderafce" }}>
       <div className="app">
         {/* <Playgounrd /> */}
@@ -41,6 +42,7 @@ const appRouter = createBrowserRouter([
         children: [],
       },
       { path: "/about", Component: About },
+      { path: "/contact", Component: Contact },
       { path: "/cart", Component: Cart },
 
       { path: "/restaurant/:resId", Component: RestaurantMenu },

@@ -10,7 +10,7 @@ const RestaurantCard = ({
   costForTwo,
   aggregatedDiscountInfoV3,
 }) => (
-  <div className="res-card">
+  <div data-testid="restaurant-card" className="res-card">
     <div className="res-card-img-wrapper">
       <img
         className="res-card-img"

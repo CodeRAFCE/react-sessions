@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeItem, updateQuantity } from "../utils/redux/slices/cartSlice";
 
 const CartItem = ({ item, onUpdateQuantity, onRemoveItem }) => (
-  <div className="cart-item">
+  <div className="cart-item" data-testid="cart-items">
     <div className="cart-item-info">
       <span className={item.isVeg ? "veg-dot" : "nonveg-dot"} />
       <div>

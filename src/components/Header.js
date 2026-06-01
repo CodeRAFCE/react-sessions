@@ -34,7 +34,7 @@ export const Header = () => {
           <li>
             <NavLink to="/contact">Contact Us</NavLink>
           </li>
-          <li>
+          <li data-testid="cart-nav-item">
             <NavLink to="/cart">Cart ({cartItems.length})</NavLink>
           </li>
         </ul>

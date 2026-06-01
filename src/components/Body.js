@@ -20,7 +20,7 @@ const Body = () => {
   } = useRestaurants();
 
   const onlineStatus = useOnlineStatus();
-
+  // Higher Order Component
   const VegRestaurantCard = withVegBadge(RestaurantCard);
 
   const handleSearchChange = (e) => {
@@ -45,6 +45,7 @@ const Body = () => {
         <div className="search-bar">
           <input
             type="text"
+            data-testid="search-input"
             placeholder="Search for restaurants or cuisines..."
             value={searchQuery}
             onChange={handleSearchChange}

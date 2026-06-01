@@ -98,7 +98,9 @@ const MenuItem = ({ item }) => {
         >
           −
         </button>
-        <span className="qty-counter-value">{cartItem.quantity}</span>
+        <span className="qty-counter-value" data-testid="qty-counter-value">
+          {cartItem.quantity}
+        </span>
         <button
           className="qty-counter-btn"
           onClick={() => handleUpdateQuantity(cartItem.quantity + 1)}
@@ -110,16 +112,19 @@ const MenuItem = ({ item }) => {
       <button
         className={`add-to-cart-btn ${className}`}
         onClick={handleAddToCart}
+        data-testid="add-to-cart-btn"
       >
         ADD
       </button>
     );
 
   return (
-    <div className="menu-item">
+    <div className="menu-item" data-testid="menu-items">
       <div className="menu-item-info">
         <span className={isVeg ? "veg-dot" : "nonveg-dot"} />
-        <h3 className="menu-item-name">{item.name}</h3>
+        <h3 className="menu-item-name" data-testid="menu-item-name">
+          {item.name}
+        </h3>
         <p className="menu-item-price">₹{price}</p>
         {item.description && (
           <p className="menu-item-desc">{item.description}</p>

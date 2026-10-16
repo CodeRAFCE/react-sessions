@@ -13,6 +13,7 @@ const ErrorPage = lazy(() => import("./components/ErrorPage"));
 const About = lazy(() => import("./pages/About"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Contact = lazy(() => import("./components/Contact"));
+const TestUseEffect = lazy(() => import("./components/TestUseEffect"));
 
 const AppLayout = () => (
   <Provider store={appStore}>
@@ -46,6 +47,7 @@ const appRouter = createBrowserRouter([
       { path: "/cart", Component: Cart },
 
       { path: "/restaurant/:resId", Component: RestaurantMenu },
+      { path: "/test-useEffect", Component: TestUseEffect },
     ],
   },
   { path: "*", Component: NotFound },

@@ -86,6 +86,7 @@ class Parent extends React.Component {
  * Child render
  * Child2 constructor
  * Child2 render
+ * 
  * Child2 mounted
  * Child mounted
  * Child2 mounted

@@ -13,9 +13,7 @@ const ErrorPage = lazy(() => import("./components/ErrorPage"));
 const About = lazy(() => import("./pages/About"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Contact = lazy(() => import("./components/Contact"));
-const LifeCycleWithClass = lazy(
-  () => import("./components/LifeCycleWithClass"),
-);
+const Challenge = lazy(() => import("./components/Challenge"));
 
 const AppLayout = () => (
   <Provider store={appStore}>
@@ -49,7 +47,7 @@ const appRouter = createBrowserRouter([
       { path: "/cart", Component: Cart },
 
       { path: "/restaurant/:resId", Component: RestaurantMenu },
-      { path: "/test-useEffect", Component: LifeCycleWithClass },
+      { path: "/test-useEffect", Component: Challenge },
     ],
   },
   { path: "*", Component: NotFound },

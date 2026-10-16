@@ -1,4 +1,3 @@
-
 class Child2 extends React.Component {
   constructor(props) {
     super(props);

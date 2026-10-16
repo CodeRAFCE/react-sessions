@@ -1,6 +1,5 @@
 import FunctionalComponent from "./FunctionalComponent"
 import ClassComponent from "./ClassComponent"
-import { Component } from "react"
 
 
 const AboutUs = () => {

@@ -3,7 +3,10 @@ import { getUser } from "../services/users.service";
 import UserContext from "../utils/context/UserContext";
 
 class ClassComponent extends Component {
+  // To access props
+  // Mandatory to write super() when you use a constructor()
   constructor(props) {
+    // super() is to access data from the extended component(React.Component)
     super(props);
     console.log("Constructor called", props);
 
